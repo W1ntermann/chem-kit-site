@@ -4,7 +4,7 @@ import { useLanguage } from "@/context/LanguageContext";
 
 const historyData: Record<string, { year: string; text: string }[]> = {
   uk: [
-    { year: "1889", text: "Заснування машинобудівного заводу Wilhelm Niemann" },
+    { year: "1889", text: "Заснування машинобудівного заводу Теон" },
     { year: "1950", text: "Початок виробництва спеціалізованих машин для лакофарбової промисловості" },
     { year: "1970", text: "Запуск серії KREI — високоякісних диссольверів та млинів" },
     { year: "1990", text: "Розширення виробничих потужностей, вихід на міжнародний ринок" },
@@ -12,7 +12,7 @@ const historyData: Record<string, { year: string; text: string }[]> = {
     { year: "2020", text: "Впровадження Industry 4.0 — інтелектуальні технології виробництва" },
   ],
   en: [
-    { year: "1889", text: "Founding of the Wilhelm Niemann machine factory" },
+    { year: "1889", text: "Founding of the Teon machine factory" },
     { year: "1950", text: "Start of production of specialized machines for the paint industry" },
     { year: "1970", text: "Launch of the KREI series — high-quality dissolvers and mills" },
     { year: "1990", text: "Expansion of production facilities, entry into the international market" },
@@ -20,7 +20,7 @@ const historyData: Record<string, { year: string; text: string }[]> = {
     { year: "2020", text: "Introduction of Industry 4.0 — smart manufacturing technologies" },
   ],
   pl: [
-    { year: "1889", text: "Założenie fabryki maszyn Wilhelm Niemann" },
+    { year: "1889", text: "Założenie fabryki maszyn Teon" },
     { year: "1950", text: "Rozpoczęcie produkcji wyspecjalizowanych maszyn dla przemysłu lakierniczego" },
     { year: "1970", text: "Uruchomienie serii KREI — wysokiej jakości dyspergatora i młynów" },
     { year: "1990", text: "Rozbudowa mocy produkcyjnych, wejście na rynek międzynarodowy" },
@@ -72,7 +72,7 @@ export default function Company() {
                 {t("company.contact_info")}
               </h3>
               <div style={{ fontSize: "13px", color: "#555", lineHeight: "2" }}>
-                <div><strong>Wilhelm Niemann GmbH & Co. KG</strong></div>
+                <div><strong>Теон</strong></div>
                 <div>Maschinenfabrik</div>
                 <div>Lange Straße 5</div>
                 <div>32609 Hüllhorst</div>

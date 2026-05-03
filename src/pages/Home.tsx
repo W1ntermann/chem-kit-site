@@ -79,17 +79,17 @@ function MachineryIllustration({ type }: { type: string }) {
 
 const newsData: Record<string, { date: string; title: string; text: string }[]> = {
   uk: [
-    { date: "15.04.2024", title: "Wilhelm Niemann на виставці Hannover Messe 2024", text: "Відвідайте наш стенд на найбільшій промисловій виставці світу. Ми представимо новітні розробки в галузі диспергування." },
+    { date: "15.04.2024", title: "Теон на виставці Hannover Messe 2024", text: "Відвідайте наш стенд на найбільшій промисловій виставці світу. Ми представимо новітні розробки в галузі диспергування." },
     { date: "01.03.2024", title: "Нова версія KREI DISSOLVER-Butterfly", text: "Представляємо оновлену серію диссольверів з поліпшеними характеристиками продуктивності та енергоефективності." },
     { date: "10.02.2024", title: "Розширення сервісного відділу", text: "Наша команда фахівців готова надати швидкий та якісний сервіс вашого обладнання по всьому світу." },
   ],
   en: [
-    { date: "15.04.2024", title: "Wilhelm Niemann at Hannover Messe 2024", text: "Visit our booth at the world's largest industrial trade fair. We will present the latest developments in dispersing technology." },
+    { date: "15.04.2024", title: "Teon at Hannover Messe 2024", text: "Visit our booth at the world's largest industrial trade fair. We will present the latest developments in dispersing technology." },
     { date: "01.03.2024", title: "New KREI DISSOLVER-Butterfly Version", text: "Introducing the updated dissolver series with improved performance characteristics and energy efficiency." },
     { date: "10.02.2024", title: "Expansion of Service Department", text: "Our team of specialists is ready to provide fast and quality service for your equipment worldwide." },
   ],
   pl: [
-    { date: "15.04.2024", title: "Wilhelm Niemann na targach Hannover Messe 2024", text: "Odwiedź nasze stoisko na największych światowych targach przemysłowych. Zaprezentujemy najnowsze rozwiązania w dziedzinie dyspergowania." },
+    { date: "15.04.2024", title: "Teon na targach Hannover Messe 2024", text: "Odwiedź nasze stoisko na największych światowych targach przemysłowych. Zaprezentujemy najnowsze rozwiązania w dziedzinie dyspergowania." },
     { date: "01.03.2024", title: "Nowa wersja KREI DISSOLVER-Butterfly", text: "Prezentujemy zaktualizowaną serię dyspergatora z ulepszonymi parametrami wydajności i efektywności energetycznej." },
     { date: "10.02.2024", title: "Rozbudowa działu serwisowego", text: "Nasz zespół specjalistów jest gotowy do szybkiego i profesjonalnego serwisu Twoich urządzeń na całym świecie." },
   ],
@@ -282,7 +282,7 @@ export default function Home() {
               <rect x="0" y="212" width="640" height="6" fill="#aaa"/>
             </svg>
             <div style={{ position: "absolute", bottom: "8px", right: "8px", background: "rgba(0,63,120,0.8)", color: "#fff", padding: "4px 8px", fontSize: "10px" }}>
-              Wilhelm Niemann GmbH & Co. — Hüllhorst
+              Теон — Hüllhorst
             </div>
           </div>
         </div>

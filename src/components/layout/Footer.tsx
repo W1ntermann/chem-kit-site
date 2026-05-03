@@ -67,7 +67,7 @@ export default function Footer() {
               {t("nav.contact")}
             </div>
             <div className="text-[13px] leading-relaxed text-white/85">
-              <div className="font-bold">Wilhelm Niemann GmbH & Co. KG</div>
+              <div className="font-bold">Теон</div>
               <div>Lange Straße 5</div>
               <div>32609 Hüllhorst</div>
               <div>Deutschland</div>

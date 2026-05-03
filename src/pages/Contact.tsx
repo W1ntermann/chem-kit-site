@@ -59,7 +59,7 @@ export default function Contact() {
                   <MapPin size={18} style={{ color: "#fff" }} />
                 </div>
                 <div>
-                  <div style={{ fontWeight: "bold", color: "#003f78", marginBottom: "4px", fontSize: "14px" }}>Wilhelm Niemann GmbH & Co. KG</div>
+                  <div style={{ fontWeight: "bold", color: "#003f78", marginBottom: "4px", fontSize: "14px" }}>Теон</div>
                   <div style={{ color: "#555", fontSize: "13px", lineHeight: "1.7" }}>
                     Lange Straße 5<br />32609 Hüllhorst<br />Deutschland
                   </div>

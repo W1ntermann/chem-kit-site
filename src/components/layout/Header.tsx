@@ -93,10 +93,10 @@ export default function Header() {
           <Link href="/" className="flex min-w-0 shrink items-center no-underline">
             <div>
               <div className="text-base font-bold leading-tight tracking-wide text-[#003f78] md:text-[21px]">
-                WILHELM NIEMANN
+                ТЕОН
               </div>
               <div className="text-[8px] font-semibold tracking-[2px] text-[#003f78] md:text-[9.5px] md:tracking-[3.5px]">
-                MASCHINENFABRIK
+                MACHINES & ENGINEERING
               </div>
             </div>
           </Link>

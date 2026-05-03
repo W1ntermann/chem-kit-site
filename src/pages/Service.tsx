@@ -8,25 +8,25 @@ export default function Service() {
 
   const serviceItems: Record<string, { icon: string; title: string; text: string }[]> = {
     uk: [
-      { icon: "🔧", title: "Монтаж та пуско-налагодження", text: "Кваліфіковані техніки NIEMANN здійснять монтаж та налагодження обладнання на вашому підприємстві." },
+      { icon: "🔧", title: "Монтаж та пуско-налагодження", text: "Кваліфіковані техніки Теон здійснять монтаж та налагодження обладнання на вашому підприємстві." },
       { icon: "📋", title: "Технічне обслуговування", text: "Регулярне технічне обслуговування для забезпечення надійної роботи обладнання та максимального терміну служби." },
-      { icon: "⚙️", title: "Ремонт та відновлення", text: "Оперативний ремонт будь-якої складності з використанням оригінальних запчастин NIEMANN." },
+      { icon: "⚙️", title: "Ремонт та відновлення", text: "Оперативний ремонт будь-якої складності з використанням оригінальних запчастин Теон." },
       { icon: "📦", title: "Запасні частини", text: "Широкий асортимент оригінальних запасних частин на складі, швидка доставка по всьому світу." },
       { icon: "🎓", title: "Навчання персоналу", text: "Навчання операторів та технічного персоналу на підприємстві або на нашому навчальному центрі у Хюллгорсті." },
       { icon: "📞", title: "Технічна підтримка", text: "Цілодобова технічна підтримка для вирішення будь-яких питань по телефону або онлайн." },
     ],
     en: [
-      { icon: "🔧", title: "Installation & Commissioning", text: "Qualified NIEMANN technicians will install and commission the equipment at your facility." },
+      { icon: "🔧", title: "Installation & Commissioning", text: "Qualified Teon technicians will install and commission the equipment at your facility." },
       { icon: "📋", title: "Maintenance", text: "Regular maintenance to ensure reliable equipment operation and maximum service life." },
-      { icon: "⚙️", title: "Repair & Restoration", text: "Prompt repair of any complexity using original NIEMANN spare parts." },
+      { icon: "⚙️", title: "Repair & Restoration", text: "Prompt repair of any complexity using original Teon spare parts." },
       { icon: "📦", title: "Spare Parts", text: "Wide range of original spare parts in stock, fast delivery worldwide." },
       { icon: "🎓", title: "Staff Training", text: "Training of operators and technical staff at your site or at our training center in Hüllhorst." },
       { icon: "📞", title: "Technical Support", text: "Round-the-clock technical support for any questions by phone or online." },
     ],
     pl: [
-      { icon: "🔧", title: "Montaż i uruchomienie", text: "Wykwalifikowani technicy NIEMANN przeprowadzą montaż i uruchomienie urządzeń w Twoim zakładzie." },
+      { icon: "🔧", title: "Montaż i uruchomienie", text: "Wykwalifikowani technicy Teon przeprowadzą montaż i uruchomienie urządzeń w Twoim zakładzie." },
       { icon: "📋", title: "Konserwacja", text: "Regularna konserwacja zapewniająca niezawodne działanie urządzeń i maksymalną żywotność." },
-      { icon: "⚙️", title: "Naprawa i regeneracja", text: "Sprawna naprawa o dowolnym stopniu złożoności z użyciem oryginalnych części zamiennych NIEMANN." },
+      { icon: "⚙️", title: "Naprawa i regeneracja", text: "Sprawna naprawa o dowolnym stopniu złożoności z użyciem oryginalnych części zamiennych Teon." },
       { icon: "📦", title: "Części zamienne", text: "Szeroki asortyment oryginalnych części zamiennych na stanie, szybka dostawa na cały świat." },
       { icon: "🎓", title: "Szkolenie personelu", text: "Szkolenie operatorów i personelu technicznego u klienta lub w naszym centrum szkoleniowym w Hüllhorst." },
       { icon: "📞", title: "Wsparcie techniczne", text: "Całodobowe wsparcie techniczne w rozwiązywaniu wszelkich problemów przez telefon lub online." },
