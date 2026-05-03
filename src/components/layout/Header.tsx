@@ -6,7 +6,7 @@ import logoImage from "@/assets/Logo-ChemTech.png";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
 
-const languages: { code: Language; flag: string; label: string }[] = [
+const languages: { code : Language, flag: string; label: string }[] = [
   { code: "en", flag: "🇬🇧", label: "English" },
   { code: "pl", flag: "🇵🇱", label: "Polski" },
   { code: "uk", flag: "🇺🇦", label: "Українська" },
@@ -52,20 +52,16 @@ export default function Header() {
                 type="button"
                 onClick={() => setLang(language.code)}
                 title={language.label}
+                aria-label={language.label}
+                aria-pressed={lang === language.code}
                 className={cn(
-                  "flex min-h-11 min-w-11 items-center justify-center gap-1 rounded border-2 bg-transparent px-1 py-1 text-base transition sm:min-h-0 sm:min-w-0",
-                  lang === language.code ? "border-[#003f78] opacity-100" : "border-transparent opacity-55 hover:opacity-85"
+                  "inline-flex items-center justify-center rounded-md px-3 py-1 text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-1",
+                  lang === language.code
+                    ? "bg-[#003f78] text-white border border-[#003f78]"
+                    : "bg-transparent text-[#333] border border-transparent hover:bg-[#f0f5fa] hover:text-[#003f78]"
                 )}
               >
-                <span aria-hidden>{language.flag}</span>
-                <span
-                  className={cn(
-                    "hidden text-[10px] text-[#333] sm:inline",
-                    lang === language.code && "font-bold"
-                  )}
-                >
-                  {language.code.toUpperCase()}
-                </span>
+                <span className={cn("text-xs tracking-wide", lang === language.code && "font-semibold")}>{language.code === "uk" ? "UA" : language.code.toUpperCase()}</span>
               </button>
             ))}
           </div>
