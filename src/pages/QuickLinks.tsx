@@ -4,14 +4,17 @@ import { ArrowRight } from "lucide-react";
 import serviceImg from "@/assets/service.jpg";
 import contactImg from "@/assets/contact-person.jpg";
 import galleryImg from "@/assets/hero-factory.jpg";
-
-const cards = [
-  { title: "Сервіс", image: serviceImg, desc: "Технічна підтримка та обслуговування", href: "/service" },
-  { title: "Контактна особа", image: contactImg, desc: "Знайдіть вашого менеджера", href: "/contact" },
-  { title: "Галерея", image: galleryImg, desc: "Перегляньте нашу роботу", href: "/gallery" },
-];
+import { useLanguage } from "@/context/LanguageContext";
 
 export function QuickLinksSection() {
+  const { t } = useLanguage();
+
+  const cards = [
+    { title: t("quick.service.title"), image: serviceImg, desc: t("quick.service.desc"), href: "/service" },
+    { title: t("quick.contact.title"), image: contactImg, desc: t("quick.contact.desc"), href: "/contact" },
+    { title: t("quick.gallery.title"), image: galleryImg, desc: t("quick.gallery.desc"), href: "/gallery" },
+  ];
+
   return (
     <section className="py-16 lg:py-24">
       <div className="mx-auto max-w-7xl px-4">
@@ -39,7 +42,7 @@ export function QuickLinksSection() {
                   </h2>
                   <p className="mt-1 text-sm text-white drop-shadow">{card.desc}</p>
                   <div className="mt-3 flex items-center gap-1 text-sm font-semibold text-white drop-shadow">
-                    Детальніше <ArrowRight className="h-4 w-4" />
+                    {t("products.more")} <ArrowRight className="h-4 w-4" />
                   </div>
                 </div>
               </Link>
