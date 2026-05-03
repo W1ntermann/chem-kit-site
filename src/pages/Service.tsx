@@ -36,19 +36,19 @@ export default function Service() {
   const items = serviceItems[lang];
 
   return (
-    <div style={{ minHeight: "100vh", fontFamily: "Arial, sans-serif" }}>
+    <div className="min-h-screen font-sans" style={{ fontFamily: "Arial, sans-serif" }}>
       <Header />
-      <div style={{ backgroundColor: "#003f78", padding: "30px 16px" }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-          <h1 style={{ color: "#fff", fontSize: "26px", fontWeight: "bold", margin: 0 }}>{t("service.title")}</h1>
-          <div style={{ color: "rgba(255,255,255,0.7)", fontSize: "13px", marginTop: "8px" }}>
+      <div className="bg-[#003f78] px-4 py-6 sm:py-8 md:py-[30px]">
+        <div className="mx-auto max-w-[1200px]">
+          <h1 className="m-0 text-xl font-bold text-white sm:text-2xl md:text-[26px]">{t("service.title")}</h1>
+          <div className="mt-2 text-[13px] text-white/70">
             {t("breadcrumb.home")} / {t("service.title")}
           </div>
         </div>
       </div>
 
-      <div style={{ maxWidth: "1200px", margin: "50px auto", padding: "0 16px" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "24px", marginBottom: "50px" }}>
+      <div className="mx-auto max-w-[1200px] px-4 py-10 sm:py-12 md:py-[50px]">
+        <div className="mb-10 grid grid-cols-1 gap-5 md:mb-12 md:grid-cols-2 md:gap-6 lg:grid-cols-3 lg:gap-6">
           {items.map((item) => (
             <div
               key={item.title}
@@ -63,14 +63,14 @@ export default function Service() {
           ))}
         </div>
 
-        <div style={{ backgroundColor: "#003f78", color: "#fff", padding: "30px", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "20px" }}>
-          <div>
-            <h3 style={{ margin: "0 0 8px", fontSize: "18px" }}>{t("service.cta")}</h3>
-            <p style={{ margin: 0, color: "rgba(255,255,255,0.85)", fontSize: "14px" }}>{t("service.cta.text")}</p>
+        <div className="flex flex-col gap-5 bg-[#003f78] p-6 text-white sm:flex-row sm:items-center sm:justify-between sm:gap-6 md:p-8">
+          <div className="min-w-0">
+            <h3 className="m-0 mb-2 text-lg">{t("service.cta")}</h3>
+            <p className="m-0 text-sm text-white/85 sm:text-[14px]">{t("service.cta.text")}</p>
           </div>
           <Link
             href="/contact"
-            style={{ backgroundColor: "#c8a832", color: "#003f78", padding: "12px 28px", fontWeight: "bold", textDecoration: "none", fontSize: "14px", display: "inline-block" }}
+            className="inline-block bg-[#c8a832] px-7 py-3 text-center text-sm font-bold text-[#003f78] no-underline hover:brightness-105 sm:shrink-0"
           >
             {t("service.contact_us")} →
           </Link>

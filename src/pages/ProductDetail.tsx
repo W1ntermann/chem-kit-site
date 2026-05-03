@@ -99,29 +99,31 @@ export default function ProductDetail() {
   const currentIndex = allProducts.indexOf(slug || "");
 
   return (
-    <div style={{ minHeight: "100vh", fontFamily: "Arial, sans-serif" }}>
+    <div className="min-h-screen font-sans" style={{ fontFamily: "Arial, sans-serif" }}>
       <Header />
 
-      {/* Page header */}
-      <div style={{ backgroundColor: "#003f78", padding: "28px 16px" }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: "8px", color: "rgba(255,255,255,0.7)", fontSize: "13px", marginBottom: "12px" }}>
-            <Link href="/" style={{ color: "rgba(255,255,255,0.7)", textDecoration: "none" }}>{t("breadcrumb.home")}</Link>
-            <ChevronRight size={14} />
-            <Link href="/products" style={{ color: "rgba(255,255,255,0.7)", textDecoration: "none" }}>{t("breadcrumb.products")}</Link>
-            <ChevronRight size={14} />
-            <span style={{ color: "#fff" }}>{product.name}</span>
+      <div className="bg-[#003f78] px-4 py-6 sm:py-7 md:py-7 md:pb-8">
+        <div className="mx-auto max-w-[1200px]">
+          <div className="mb-3 flex flex-wrap items-center gap-x-2 gap-y-1 text-[13px] text-white/70">
+            <Link href="/" className="shrink-0 text-white/70 no-underline hover:text-white">
+              {t("breadcrumb.home")}
+            </Link>
+            <ChevronRight size={14} className="shrink-0" />
+            <Link href="/products" className="shrink-0 text-white/70 no-underline hover:text-white">
+              {t("breadcrumb.products")}
+            </Link>
+            <ChevronRight size={14} className="shrink-0" />
+            <span className="min-w-0 break-words text-white">{product.name}</span>
           </div>
-          <h1 style={{ color: "#fff", fontSize: "26px", fontWeight: "bold", margin: 0, letterSpacing: "0.5px" }}>
+          <h1 className="m-0 text-xl font-bold tracking-wide text-white sm:text-2xl md:text-[26px]">
             {product.name}
           </h1>
-          <p style={{ color: "#c8a832", fontSize: "14px", marginTop: "8px" }}>{product.tagline}</p>
+          <p className="mt-2 text-sm text-[#c8a832]">{product.tagline}</p>
         </div>
       </div>
 
-      {/* Product nav */}
-      <div style={{ backgroundColor: "#f0f5fa", borderBottom: "1px solid #e0e8f0", padding: "0 16px" }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto", display: "flex", gap: "0", overflowX: "auto" }}>
+      <div className="overflow-x-auto border-b border-[#e0e8f0] bg-[#f0f5fa] px-4 [-webkit-overflow-scrolling:touch]">
+        <div className="mx-auto flex max-w-[1200px] gap-0">
           {allProducts.map((s, i) => {
             const names = [
               "KREI DISSOLVER",
@@ -152,22 +154,10 @@ export default function ProductDetail() {
         </div>
       </div>
 
-      {/* Main content */}
-      <div style={{ maxWidth: "1200px", margin: "40px auto", padding: "0 16px" }}>
-        {/* Top section: image + description */}
-        <div style={{ display: "grid", gridTemplateColumns: "300px 1fr", gap: "50px", marginBottom: "50px" }}>
-          {/* Product image */}
+      <div className="mx-auto max-w-[1200px] px-4 py-8 sm:py-10 md:py-10">
+        <div className="mb-10 grid grid-cols-1 gap-8 lg:mb-12 lg:grid-cols-[minmax(0,320px)_1fr] lg:gap-12 xl:gap-[50px]">
           <div>
-            <div style={{
-              backgroundColor: "#e8eef8",
-              border: "1px solid #d0d8e8",
-              padding: "30px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              height: "280px",
-              position: "relative",
-            }}>
+            <div className="relative flex h-auto min-h-[220px] items-center justify-center border border-[#d0d8e8] bg-[#e8eef8] p-6 sm:h-[280px] sm:min-h-0 lg:p-[30px]">
               <MachineryDetailSVG type={product.svgType} />
               {/* KREI badge */}
               <div style={{
@@ -261,7 +251,7 @@ export default function ProductDetail() {
             <h3 style={{ color: "#003f78", fontSize: "16px", fontWeight: "bold", marginBottom: "14px", borderBottom: "2px solid #e0e8f0", paddingBottom: "8px" }}>
               {t("product.features")}
             </h3>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px", marginBottom: "24px" }}>
+            <div className="mb-6 grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-2">
               {product.features.map((feature) => (
                 <div key={feature} style={{ display: "flex", alignItems: "flex-start", gap: "8px", fontSize: "13px", color: "#444" }}>
                   <div style={{ width: "6px", height: "6px", borderRadius: "50%", backgroundColor: "#003f78", flexShrink: 0, marginTop: "5px" }} />
@@ -272,8 +262,7 @@ export default function ProductDetail() {
           </div>
         </div>
 
-        {/* Applications + Technical Specs */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "30px", marginBottom: "50px" }}>
+        <div className="mb-10 grid grid-cols-1 gap-6 lg:mb-12 lg:grid-cols-2 lg:gap-8 xl:gap-[30px]">
           {/* Applications */}
           <div style={{ backgroundColor: "#f5f8fc", border: "1px solid #e0e8f0", padding: "24px", borderTop: "3px solid #c8a832" }}>
             <h3 style={{ color: "#003f78", fontSize: "16px", fontWeight: "bold", marginBottom: "16px" }}>
@@ -297,12 +286,9 @@ export default function ProductDetail() {
             </ul>
           </div>
 
-          {/* Technical specs */}
-          <div style={{ backgroundColor: "#003f78", padding: "24px" }}>
-            <h3 style={{ color: "#fff", fontSize: "16px", fontWeight: "bold", marginBottom: "16px" }}>
-              {t("product.technical")}
-            </h3>
-            <table style={{ width: "100%", borderCollapse: "collapse" }}>
+          <div className="overflow-x-auto bg-[#003f78] p-5 sm:p-6">
+            <h3 className="mb-4 text-base font-bold text-white">{t("product.technical")}</h3>
+            <table className="w-full min-w-[260px] border-collapse">
               <tbody>
                 {product.technicalSpecs.map((spec, i) => (
                   <tr key={spec.label} style={{ borderBottom: "1px solid rgba(255,255,255,0.15)" }}>
@@ -319,12 +305,12 @@ export default function ProductDetail() {
           </div>
         </div>
 
-        {/* Models table */}
-        <div style={{ marginBottom: "50px" }}>
-          <h3 style={{ color: "#003f78", fontSize: "18px", fontWeight: "bold", marginBottom: "16px", borderBottom: "2px solid #003f78", paddingBottom: "8px" }}>
+        <div className="mb-10 lg:mb-12">
+          <h3 className="mb-4 border-b-2 border-[#003f78] pb-2 text-lg font-bold text-[#003f78]">
             {t("product.models")}
           </h3>
-          <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "14px" }}>
+          <div className="-mx-4 overflow-x-auto px-4 sm:mx-0 sm:px-0">
+          <table className="w-full min-w-[520px] border-collapse text-sm sm:min-w-0">
             <thead>
               <tr style={{ backgroundColor: "#003f78", color: "#fff" }}>
                 <th style={{ padding: "12px 16px", textAlign: "left" }}>{t("products.models")}</th>
@@ -360,48 +346,28 @@ export default function ProductDetail() {
               ))}
             </tbody>
           </table>
+          </div>
         </div>
 
-        {/* Contact expert CTA */}
-        <div style={{
-          backgroundColor: "#f5f8fc",
-          border: "1px solid #e0e8f0",
-          borderLeft: "5px solid #c8a832",
-          padding: "24px 30px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          flexWrap: "wrap",
-          gap: "16px",
-          marginBottom: "40px",
-        }}>
-          <div>
-            <h3 style={{ color: "#003f78", fontSize: "17px", fontWeight: "bold", margin: "0 0 6px" }}>
+        <div className="mb-8 flex flex-col gap-4 border border-[#e0e8f0] border-l-[5px] border-l-[#c8a832] bg-[#f5f8fc] p-5 sm:flex-row sm:items-center sm:justify-between sm:gap-4 sm:p-6 md:mb-10 md:px-[30px] md:py-6">
+          <div className="min-w-0">
+            <h3 className="m-0 mb-1.5 text-base font-bold text-[#003f78] md:text-[17px]">
               {t("product.contact_expert")}
             </h3>
-            <div style={{ display: "flex", gap: "20px", fontSize: "14px", color: "#555" }}>
-              <span style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-                <Phone size={14} style={{ color: "#003f78" }} />
+            <div className="flex flex-col gap-2 text-sm text-[#555] sm:flex-row sm:flex-wrap sm:gap-x-5 sm:gap-y-2 md:text-[14px]">
+              <span className="flex items-center gap-1.5">
+                <Phone size={14} className="shrink-0 text-[#003f78]" />
                 +49 (0) 5744 / 508-0
               </span>
-              <span style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-                <Mail size={14} style={{ color: "#003f78" }} />
+              <span className="flex items-center gap-1.5 break-all">
+                <Mail size={14} className="shrink-0 text-[#003f78]" />
                 info@niemann.de
               </span>
             </div>
           </div>
           <Link
             href="/contact"
-            style={{
-              backgroundColor: "#003f78",
-              color: "#fff",
-              padding: "12px 28px",
-              fontSize: "14px",
-              fontWeight: "bold",
-              textDecoration: "none",
-              display: "inline-block",
-              transition: "background 0.2s",
-            }}
+            className="inline-block bg-[#003f78] px-6 py-3 text-center text-sm font-bold text-white no-underline transition-colors hover:bg-[#1a6fb5] sm:shrink-0 md:px-7"
           >
             {t("product.request")} →
           </Link>

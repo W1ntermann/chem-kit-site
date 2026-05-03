@@ -6,6 +6,7 @@ import Footer from "@/components/layout/Footer";
 import { useLanguage } from "@/context/LanguageContext";
 import { getProducts } from "@/translations/productData";
 import { QuickLinksSection } from "./QuickLinks";
+import { cn } from "@/lib/utils";
 
 const heroSlides = [
   {
@@ -32,7 +33,7 @@ function MachineryIllustration({ type }: { type: string }) {
   const gray = "#9e9e9e";
 
   return (
-    <svg viewBox="0 0 200 200" width="100%" height="150" style={{ maxWidth: "150px" }}>
+    <svg viewBox="0 0 200 200" width="100%" height="150" className="max-w-[120px] sm:max-w-[150px]">
       {type === "dissolver" && (
         <>
           <rect x="30" y="50" width="140" height="110" rx="4" fill={blue}/>
@@ -153,23 +154,19 @@ export default function Home() {
   const productIcons = ["dissolver", "basket", "butterfly", "continuous"];
 
   return (
-    <div style={{ minHeight: "100vh", fontFamily: "Arial, sans-serif" }}>
+    <div className="min-h-screen font-sans" style={{ fontFamily: "Arial, sans-serif" }}>
       <Header />
 
       {/* Hero Section */}
-      <div style={{
-        position: "relative",
-        height: "420px",
-        background: slide.bg,
-        overflow: "hidden",
-        transition: "background 0.8s ease",
-      }}>
-        {/* Machinery silhouettes */}
-        <div style={{
-          position: "absolute", inset: 0,
-          display: "flex", alignItems: "flex-end", justifyContent: "center",
-          gap: "16px", padding: "0 40px 100px",
-        }}>
+      <div
+        className="relative min-h-[300px] overflow-hidden sm:min-h-[360px] md:min-h-[420px]"
+        style={{
+          background: slide.bg,
+          transition: "background 0.8s ease",
+        }}
+      >
+        {/* Machinery silhouettes — desktop only to avoid horizontal overflow */}
+        <div className="absolute inset-0 hidden items-end justify-center gap-4 px-10 pb-[100px] md:flex">
           {[...Array(6)].map((_, i) => (
             <div key={i} style={{
               width: `${55 + i * 12}px`,
@@ -189,51 +186,47 @@ export default function Home() {
 
         <div style={{ position: "absolute", inset: 0, backgroundColor: slide.overlay }} />
 
-        {/* Arrows */}
-        <button onClick={() => setCurrentSlide((p) => (p - 1 + heroSlides.length) % heroSlides.length)}
-          style={{ position: "absolute", left: "16px", top: "50%", transform: "translateY(-50%)", background: "rgba(255,255,255,0.18)", border: "1px solid rgba(255,255,255,0.5)", borderRadius: "2px", padding: "8px", cursor: "pointer", color: "#fff", zIndex: 10, display: "flex" }}>
+        <button
+          type="button"
+          onClick={() => setCurrentSlide((p) => (p - 1 + heroSlides.length) % heroSlides.length)}
+          className="absolute left-4 top-1/2 z-10 flex min-h-11 min-w-11 -translate-y-1/2 items-center justify-center rounded border border-white/50 bg-white/20 text-white md:left-4"
+        >
           <ChevronLeft size={24} />
         </button>
-        <button onClick={() => setCurrentSlide((p) => (p + 1) % heroSlides.length)}
-          style={{ position: "absolute", right: "16px", top: "50%", transform: "translateY(-50%)", background: "rgba(255,255,255,0.18)", border: "1px solid rgba(255,255,255,0.5)", borderRadius: "2px", padding: "8px", cursor: "pointer", color: "#fff", zIndex: 10, display: "flex" }}>
+        <button
+          type="button"
+          onClick={() => setCurrentSlide((p) => (p + 1) % heroSlides.length)}
+          className="absolute right-4 top-1/2 z-10 flex min-h-11 min-w-11 -translate-y-1/2 items-center justify-center rounded border border-white/50 bg-white/20 text-white"
+        >
           <ChevronRight size={24} />
         </button>
 
-        {/* Dots */}
-        <div style={{ position: "absolute", bottom: "108px", left: "50%", transform: "translateX(-50%)", display: "flex", gap: "8px", zIndex: 10 }}>
+        <div className="absolute bottom-[150px] left-1/2 z-10 flex -translate-x-1/2 gap-2 md:bottom-[108px]">
           {heroSlides.map((_, i) => (
-            <button key={i} onClick={() => setCurrentSlide(i)} style={{ width: "10px", height: "10px", borderRadius: "50%", border: "1px solid rgba(255,255,255,0.8)", background: i === currentSlide ? "#fff" : "rgba(255,255,255,0.3)", cursor: "pointer", padding: 0, transition: "background 0.3s" }} />
+            <button type="button" key={i} onClick={() => setCurrentSlide(i)} className="flex min-h-9 min-w-9 items-center justify-center p-0" aria-label={`Slide ${i + 1}`}>
+              <span className={cn("block h-2.5 w-2.5 rounded-full border border-white/80 transition-colors md:h-[10px] md:w-[10px]", i === currentSlide ? "bg-white" : "bg-white/30")} />
+            </button>
           ))}
         </div>
 
-        {/* Product categories bar */}
-        <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, display: "grid", gridTemplateColumns: "repeat(4, 1fr)", zIndex: 10 }}>
+        <div className="absolute bottom-0 left-0 right-0 z-10 grid grid-cols-2 md:grid-cols-4">
           {products.map((product, idx) => (
             <Link
               key={product.id}
               href={`/products/${product.slug}`}
-              style={{
-                background: "rgba(0, 30, 70, 0.82)",
-                borderRight: idx < 3 ? "1px solid rgba(255,255,255,0.12)" : "none",
-                padding: "14px 10px",
-                textAlign: "center",
-                cursor: "pointer",
-                textDecoration: "none",
-                transition: "background 0.2s",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: "8px",
-              }}
-              onMouseEnter={(e: any) => (e.currentTarget.style.background = "rgba(0, 50, 110, 0.92)")}
-              onMouseLeave={(e: any) => (e.currentTarget.style.background = "rgba(0, 30, 70, 0.82)")}
+              className={cn(
+                "flex min-h-[60px] cursor-pointer items-center justify-center gap-2 bg-[rgba(0,30,70,0.82)] px-2 py-3 no-underline transition-colors hover:bg-[rgba(0,50,110,0.92)] sm:px-3 sm:py-3.5 md:min-h-0 md:py-3.5",
+                idx % 2 === 0 && "border-r border-white/12",
+                idx < 2 && "border-b border-white/12 md:border-b-0",
+                idx < 3 && "md:border-r md:border-white/12"
+              )}
             >
-              <div style={{ width: "32px", height: "32px", borderRadius: "50%", border: "2px solid #c8a832", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, backgroundColor: "#003f78" }}>
-                <span style={{ color: "#c8a832", fontSize: "7px", fontWeight: "bold" }}>KREI</span>
+              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 border-[#c8a832] bg-[#003f78] sm:h-9 sm:w-9">
+                <span className="text-[6px] font-bold text-[#c8a832] sm:text-[7px]">KREI</span>
               </div>
-              <div style={{ textAlign: "left" }}>
-                <div style={{ color: "#c8a832", fontSize: "7px", letterSpacing: "2px", fontWeight: "bold" }}>KREI</div>
-                <div style={{ color: "#fff", fontSize: "10px", fontWeight: "bold", lineHeight: "1.2" }}>
+              <div className="min-w-0 text-left">
+                <div className="text-[6px] font-bold tracking-widest text-[#c8a832] sm:text-[7px]">KREI</div>
+                <div className="line-clamp-2 text-[9px] font-bold leading-tight text-white sm:text-[10px]">
                   {product.name.replace("KREI ", "")}
                 </div>
               </div>
@@ -242,21 +235,19 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Tagline */}
-      <div style={{ backgroundColor: "#f0f5fa", padding: "28px 16px", textAlign: "center" }}>
-        <div style={{ maxWidth: "900px", margin: "0 auto" }}>
-          <h2 style={{ color: "#c8283c", fontSize: "24px", fontWeight: "bold", letterSpacing: "2px", margin: "0 0 8px" }}>
+      <div className="bg-[#f0f5fa] px-4 py-7 text-center">
+        <div className="mx-auto max-w-[900px]">
+          <h2 className="mb-2 text-lg font-bold tracking-wide text-[#c8283c] sm:text-xl md:text-2xl md:tracking-[2px]">
             {t("hero.tagline1")}
           </h2>
-          <p style={{ color: "#003f78", fontSize: "14px", fontWeight: "bold", letterSpacing: "1px", margin: 0 }}>
+          <p className="m-0 text-xs font-bold tracking-wide text-[#003f78] sm:text-sm md:tracking-[1px]">
             {t("hero.tagline2")}
           </p>
         </div>
       </div>
 
-      {/* About Section */}
-      <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "50px 16px" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1.5fr", gap: "50px", alignItems: "start" }}>
+      <div className="mx-auto max-w-[1200px] px-4 py-10 sm:py-12 md:py-[50px]">
+        <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-[1fr_1.5fr] lg:gap-12 xl:gap-[50px]">
           <div>
             <h3 style={{ color: "#c8a832", fontSize: "20px", marginBottom: "20px", fontWeight: "bold" }}>
               {t("about.title")}
@@ -273,9 +264,11 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Aerial illustration */}
-          <div style={{ background: "linear-gradient(135deg, #c8d8e8 0%, #a8c0d8 100%)", height: "280px", position: "relative", overflow: "hidden" }}>
-            <svg viewBox="0 0 640 280" width="100%" height="100%" style={{ position: "absolute", inset: 0 }}>
+          <div
+            className="relative min-h-[220px] overflow-hidden sm:min-h-[260px] lg:min-h-[280px]"
+            style={{ background: "linear-gradient(135deg, #c8d8e8 0%, #a8c0d8 100%)" }}
+          >
+            <svg viewBox="0 0 640 280" width="100%" height="100%" className="absolute inset-0 h-full w-full" preserveAspectRatio="xMidYMid slice">
               <rect width="640" height="280" fill="#87ceeb"/>
               <rect x="0" y="140" width="640" height="140" fill="#7cb87c"/>
               <rect x="60" y="90" width="180" height="80" fill="#d0d8e0"/>
@@ -298,36 +291,17 @@ export default function Home() {
        {/* QuickLinks Section */}
       <QuickLinksSection />
 
-      {/* Products Section */}
-      <div style={{ backgroundColor: "#f5f8fc", padding: "50px 16px" }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-          <h2 style={{ color: "#003f78", fontSize: "22px", fontWeight: "bold", marginBottom: "28px", textAlign: "center", letterSpacing: "1px" }}>
+      <div className="bg-[#f5f8fc] px-4 py-10 sm:py-12 md:py-[50px]">
+        <div className="mx-auto max-w-[1200px]">
+          <h2 className="mb-7 text-center text-lg font-bold tracking-wide text-[#003f78] sm:text-xl md:text-[22px]">
             {t("products.title")}
           </h2>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "18px" }}>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-[18px] lg:grid-cols-4">
             {products.map((product, idx) => (
               <Link
                 key={product.id}
                 href={`/products/${product.slug}`}
-                style={{
-                  backgroundColor: "#fff",
-                  border: "1px solid #e0e8f0",
-                  padding: "20px 16px",
-                  textAlign: "center",
-                  cursor: "pointer",
-                  textDecoration: "none",
-                  borderTop: "3px solid #003f78",
-                  display: "block",
-                  transition: "box-shadow 0.2s, transform 0.2s",
-                }}
-                onMouseEnter={(e: any) => {
-                  e.currentTarget.style.boxShadow = "0 6px 24px rgba(0,63,120,0.14)";
-                  e.currentTarget.style.transform = "translateY(-3px)";
-                }}
-                onMouseLeave={(e: any) => {
-                  e.currentTarget.style.boxShadow = "none";
-                  e.currentTarget.style.transform = "translateY(0)";
-                }}
+                className="block cursor-pointer border border-[#e0e8f0] border-t-[3px] border-t-[#003f78] bg-white px-4 py-5 text-center no-underline transition-[box-shadow,transform] hover:-translate-y-0.5 hover:shadow-[0_6px_24px_rgba(0,63,120,0.14)] sm:px-4 sm:py-5"
               >
                 <div style={{ display: "flex", justifyContent: "center", marginBottom: "14px" }}>
                   <MachineryIllustration type={productIcons[idx]} />
@@ -354,13 +328,12 @@ export default function Home() {
 
      
 
-      {/* Why Niemann */}
-      <div style={{ backgroundColor: "#003f78", padding: "50px 16px", color: "#fff" }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-          <h2 style={{ fontSize: "22px", fontWeight: "bold", marginBottom: "30px", textAlign: "center", letterSpacing: "1px" }}>
+      <div className="bg-[#003f78] px-4 py-10 text-white sm:py-12 md:py-[50px]">
+        <div className="mx-auto max-w-[1200px]">
+          <h2 className="mb-8 text-center text-lg font-bold tracking-wide sm:text-xl md:mb-[30px] md:text-[22px]">
             {t("why.title")}
           </h2>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "30px" }}>
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-[30px]">
             {why.map((item) => (
               <div key={item.titleKey} style={{ textAlign: "center" }}>
                 <div style={{ fontSize: "34px", marginBottom: "12px" }}>{item.icon}</div>
@@ -376,17 +349,16 @@ export default function Home() {
         </div>
       </div>
 
-      {/* News */}
-      <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "50px 16px" }}>
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "22px" }}>
-          <h2 style={{ color: "#003f78", fontSize: "22px", fontWeight: "bold", margin: 0, letterSpacing: "1px" }}>
+      <div className="mx-auto max-w-[1200px] px-4 py-10 sm:py-12 md:py-[50px]">
+        <div className="mb-5 flex flex-col gap-3 sm:mb-[22px] sm:flex-row sm:items-center sm:justify-between">
+          <h2 className="m-0 text-lg font-bold tracking-wide text-[#003f78] sm:text-xl md:text-[22px]">
             {t("news.title")}
           </h2>
-          <a href="#" style={{ color: "#1a6fb5", fontSize: "13px", textDecoration: "none", fontWeight: "bold", display: "flex", alignItems: "center", gap: "4px" }}>
+          <a href="#" className="flex w-fit shrink-0 items-center gap-1 text-sm font-bold text-[#1a6fb5] no-underline">
             {t("news.all")} <ArrowRight size={14} />
           </a>
         </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "22px" }}>
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 lg:gap-[22px]">
           {news.map((item) => (
             <div key={item.title} style={{ border: "1px solid #e0e8f0", padding: "20px", cursor: "pointer", borderTop: "3px solid #c8a832", transition: "box-shadow 0.2s" }}
               onMouseEnter={(e) => ((e.currentTarget as HTMLDivElement).style.boxShadow = "0 4px 16px rgba(0,0,0,0.09)")}
@@ -403,13 +375,12 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Exhibitions */}
-      <div style={{ backgroundColor: "#f5f8fc", padding: "40px 16px" }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-          <h2 style={{ color: "#003f78", fontSize: "22px", fontWeight: "bold", marginBottom: "22px", letterSpacing: "1px" }}>
+      <div className="bg-[#f5f8fc] px-4 py-8 sm:py-10 md:py-10 md:pb-11">
+        <div className="mx-auto max-w-[1200px]">
+          <h2 className="mb-5 text-lg font-bold tracking-wide text-[#003f78] sm:text-xl md:mb-[22px] md:text-[22px]">
             {t("exhibitions.title")}
           </h2>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "16px" }}>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {shows.map((show) => (
               <div key={show.name} style={{ backgroundColor: "#fff", border: "1px solid #e0e8f0", padding: "16px" }}>
                 <div style={{ color: "#1a6fb5", fontSize: "12px", fontWeight: "bold", marginBottom: "6px" }}>{show.date}</div>

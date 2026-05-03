@@ -34,18 +34,18 @@ export default function Company() {
   const history = historyData[lang];
 
   return (
-    <div style={{ minHeight: "100vh", fontFamily: "Arial, sans-serif" }}>
+    <div className="min-h-screen font-sans" style={{ fontFamily: "Arial, sans-serif" }}>
       <Header />
-      <div style={{ backgroundColor: "#003f78", padding: "30px 16px" }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-          <h1 style={{ color: "#fff", fontSize: "26px", fontWeight: "bold", margin: 0 }}>{t("company.title")}</h1>
-          <div style={{ color: "rgba(255,255,255,0.7)", fontSize: "13px", marginTop: "8px" }}>
+      <div className="bg-[#003f78] px-4 py-6 sm:py-8 md:py-[30px]">
+        <div className="mx-auto max-w-[1200px]">
+          <h1 className="m-0 text-xl font-bold text-white sm:text-2xl md:text-[26px]">{t("company.title")}</h1>
+          <div className="mt-2 text-[13px] text-white/70">
             {t("breadcrumb.home")} / {t("company.title")}
           </div>
         </div>
       </div>
-      <div style={{ maxWidth: "1200px", margin: "50px auto", padding: "0 16px" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr", gap: "50px" }}>
+      <div className="mx-auto max-w-[1200px] px-4 py-10 sm:py-12 md:py-[50px]">
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-[2fr_1fr] lg:gap-12 xl:gap-[50px]">
           <div>
             <h2 style={{ color: "#c8a832", fontSize: "22px", marginBottom: "20px" }}>{t("company.about")}</h2>
             <p style={{ color: "#444", lineHeight: "1.8", marginBottom: "16px" }}>

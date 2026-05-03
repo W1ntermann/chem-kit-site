@@ -12,7 +12,7 @@ function MachineryIllustration({ type }: { type: string }) {
   const gray = "#9e9e9e";
 
   return (
-    <svg viewBox="0 0 200 200" width="100%" height="160" style={{ maxWidth: "160px" }}>
+    <svg viewBox="0 0 200 200" width="100%" height="160" className="max-w-[130px] sm:max-w-[160px]">
       {type === "dissolver" && (
         <>
           <rect x="30" y="50" width="140" height="110" rx="4" fill={blue}/>
@@ -63,23 +63,22 @@ export default function Products() {
   const products = getProducts(lang);
 
   return (
-    <div style={{ minHeight: "100vh", fontFamily: "Arial, sans-serif" }}>
+    <div className="min-h-screen font-sans" style={{ fontFamily: "Arial, sans-serif" }}>
       <Header />
 
-      <div style={{ backgroundColor: "#003f78", padding: "30px 16px" }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-          <h1 style={{ color: "#fff", fontSize: "26px", fontWeight: "bold", margin: 0 }}>
+      <div className="bg-[#003f78] px-4 py-6 sm:py-8 md:py-[30px]">
+        <div className="mx-auto max-w-[1200px]">
+          <h1 className="m-0 text-xl font-bold text-white sm:text-2xl md:text-[26px]">
             {t("products.page.title")}
           </h1>
-          <div style={{ color: "rgba(255,255,255,0.7)", fontSize: "13px", marginTop: "8px" }}>
+          <div className="mt-2 text-[13px] text-white/70">
             {t("breadcrumb.home")} / {t("breadcrumb.products")}
           </div>
         </div>
       </div>
 
-      {/* Product tab bar */}
-      <div style={{ backgroundColor: "#f0f5fa", borderBottom: "1px solid #e0e8f0", overflowX: "auto" }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 16px", display: "flex" }}>
+      <div className="overflow-x-auto border-b border-[#e0e8f0] bg-[#f0f5fa] [-webkit-overflow-scrolling:touch]">
+        <div className="mx-auto flex max-w-[1200px] px-4">
           {products.map((p) => (
             <Link
               key={p.slug}
@@ -110,36 +109,20 @@ export default function Products() {
         </div>
       </div>
 
-      <div style={{ maxWidth: "1200px", margin: "40px auto", padding: "0 16px" }}>
-        {products.map((product, idx) => (
+      <div className="mx-auto max-w-[1200px] px-4 py-8 sm:py-10 md:py-10">
+        {products.map((product) => (
           <div
             key={product.id}
-            style={{
-              marginBottom: "40px",
-              border: "1px solid #e0e8f0",
-              borderTop: "4px solid #003f78",
-              backgroundColor: "#fff",
-              transition: "box-shadow 0.2s",
-            }}
-            onMouseEnter={(e) => ((e.currentTarget as HTMLDivElement).style.boxShadow = "0 4px 20px rgba(0,63,120,0.1)")}
-            onMouseLeave={(e) => ((e.currentTarget as HTMLDivElement).style.boxShadow = "none")}
+            className="mb-8 border border-[#e0e8f0] border-t-4 border-t-[#003f78] bg-white transition-shadow last:mb-0 hover:shadow-[0_4px_20px_rgba(0,63,120,0.1)] sm:mb-10"
           >
-            <div style={{ display: "grid", gridTemplateColumns: "240px 1fr", gap: "0" }}>
-              {/* Image */}
-              <div style={{
-                backgroundColor: "#e8eef8",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                padding: "30px 20px",
-                borderRight: "1px solid #e0e8f0",
-              }}>
+            <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,240px)_1fr]">
+              <div className="flex items-center justify-center border-b border-[#e0e8f0] bg-[#e8eef8] px-5 py-8 lg:border-b-0 lg:border-r">
                 <MachineryIllustration type={product.svgType} />
               </div>
 
-              <div style={{ padding: "28px" }}>
-                <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: "16px" }}>
-                  <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+              <div className="p-5 sm:p-7">
+                <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                  <div className="flex min-w-0 items-center gap-3">
                     <div style={{
                       width: "38px", height: "38px",
                       borderRadius: "50%",
@@ -157,25 +140,16 @@ export default function Products() {
                       </h2>
                     </div>
                   </div>
-                  <span style={{
-                    backgroundColor: "#f0f5fa",
-                    border: "1px solid #d0dce8",
-                    color: "#003f78",
-                    fontSize: "11px",
-                    fontWeight: "bold",
-                    padding: "4px 10px",
-                    flexShrink: 0,
-                  }}>
+                  <span className="w-fit shrink-0 border border-[#d0dce8] bg-[#f0f5fa] px-2.5 py-1 text-[11px] font-bold text-[#003f78]">
                     {product.category}
                   </span>
                 </div>
 
-                <p style={{ color: "#555", fontSize: "14px", lineHeight: "1.8", marginBottom: "18px" }}>
+                <p className="mb-4 text-sm leading-relaxed text-[#555] sm:text-[14px]">
                   {product.description}
                 </p>
 
-                {/* Key features preview */}
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "6px", marginBottom: "20px" }}>
+                <div className="mb-5 grid grid-cols-1 gap-1.5 sm:grid-cols-2 sm:gap-1.5">
                   {product.features.slice(0, 4).map((feature) => (
                     <div key={feature} style={{ display: "flex", alignItems: "flex-start", gap: "7px", fontSize: "13px", color: "#555" }}>
                       <ChevronRight size={13} style={{ color: "#003f78", flexShrink: 0, marginTop: "2px" }} />
@@ -184,39 +158,16 @@ export default function Products() {
                   ))}
                 </div>
 
-                <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
+                <div className="flex flex-wrap items-center gap-3">
                   <Link
                     href={`/products/${product.slug}`}
-                    style={{
-                      backgroundColor: "#003f78",
-                      color: "#fff",
-                      padding: "10px 22px",
-                      fontSize: "13px",
-                      fontWeight: "bold",
-                      textDecoration: "none",
-                      display: "inline-flex",
-                      alignItems: "center",
-                      gap: "6px",
-                      transition: "background 0.2s",
-                    }}
-                    onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#1a6fb5")}
-                    onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#003f78")}
+                    className="inline-flex items-center gap-1.5 bg-[#003f78] px-5 py-2.5 text-[13px] font-bold text-white no-underline transition-colors hover:bg-[#1a6fb5]"
                   >
                     {t("products.more")} <ArrowRight size={14} />
                   </Link>
                   <Link
                     href="/contact"
-                    style={{
-                      color: "#003f78",
-                      fontSize: "13px",
-                      fontWeight: "bold",
-                      textDecoration: "none",
-                      display: "inline-flex",
-                      alignItems: "center",
-                      gap: "4px",
-                      borderBottom: "1px solid #003f78",
-                      paddingBottom: "2px",
-                    }}
+                    className="inline-flex items-center gap-1 border-b border-[#003f78] pb-0.5 text-[13px] font-bold text-[#003f78] no-underline"
                   >
                     {t("products.request")}
                   </Link>

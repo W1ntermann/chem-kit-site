@@ -6,9 +6,11 @@ import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
 import Company from "@/pages/Company";
 import Products from "@/pages/Products";
+
 import Service from "@/pages/Service";
 import Contact from "@/pages/Contact";
 import ProductDetail from "@/pages/ProductDetail";
+import Gallery from "@/pages/Gallery";
 import { LanguageProvider } from "@/context/LanguageContext";
 
 const queryClient = new QueryClient();
@@ -22,6 +24,7 @@ function Router() {
       <Route path="/products/:slug" component={ProductDetail} />
       <Route path="/service" component={Service} />
       <Route path="/contact" component={Contact} />
+      <Route path="/gallery" component={Gallery} />
       <Route component={NotFound} />
     </Switch>
   );
