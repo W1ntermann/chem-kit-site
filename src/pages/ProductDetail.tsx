@@ -13,7 +13,7 @@ function MachineryDetailSVG({ type }: { type: string }) {
   const silver = "#bdbdbd";
 
   if (type === "dissolver") return (
-    <svg viewBox="0 0 300 320" width="100%" height="100%" style={{ maxWidth: "280px" }}>
+    <svg viewBox="0 0 300 320" width="100%" height="100%" style={{ maxWidth: "280px", width: "100%", height: "auto" }}>
       <rect x="40" y="80" width="220" height="170" rx="6" fill={blue}/>
       <rect x="70" y="50" width="160" height="40" rx="5" fill={darkBlue}/>
       <rect x="130" y="15" width="40" height="45" fill={gray}/>
@@ -31,7 +31,7 @@ function MachineryDetailSVG({ type }: { type: string }) {
   );
 
   if (type === "basket") return (
-    <svg viewBox="0 0 300 320" width="100%" height="100%" style={{ maxWidth: "280px" }}>
+    <svg viewBox="0 0 300 320" width="100%" height="100%" style={{ maxWidth: "280px", width: "100%", height: "auto" }}>
       <rect x="50" y="70" width="200" height="150" rx="6" fill={blue}/>
       <rect x="80" y="40" width="140" height="38" rx="5" fill={darkBlue}/>
       <rect x="130" y="12" width="40" height="35" fill={gray}/>
@@ -46,7 +46,7 @@ function MachineryDetailSVG({ type }: { type: string }) {
   );
 
   if (type === "butterfly") return (
-    <svg viewBox="0 0 300 320" width="100%" height="100%" style={{ maxWidth: "280px" }}>
+    <svg viewBox="0 0 300 320" width="100%" height="100%" style={{ maxWidth: "280px", width: "100%", height: "auto" }}>
       <rect x="45" y="75" width="210" height="155" rx="6" fill={blue}/>
       <rect x="75" y="48" width="150" height="35" rx="5" fill={darkBlue}/>
       <rect x="130" y="15" width="40" height="40" fill={gray}/>
@@ -59,7 +59,7 @@ function MachineryDetailSVG({ type }: { type: string }) {
   );
 
   return (
-    <svg viewBox="0 0 300 320" width="100%" height="100%" style={{ maxWidth: "280px" }}>
+    <svg viewBox="0 0 300 320" width="100%" height="100%" style={{ maxWidth: "280px", width: "100%", height: "auto" }}>
       <rect x="30" y="85" width="240" height="130" rx="6" fill={blue}/>
       <rect x="60" y="58" width="180" height="35" rx="5" fill={darkBlue}/>
       <rect x="130" y="20" width="40" height="45" fill={gray}/>
@@ -115,15 +115,16 @@ export default function ProductDetail() {
             <ChevronRight size={14} className="shrink-0" />
             <span className="min-w-0 break-words text-white">{product.name}</span>
           </div>
-          <h1 className="m-0 text-xl font-bold tracking-wide text-white sm:text-2xl md:text-[26px]">
+          <h1 className="m-0 text-xl font-bold tracking-wide text-white sm:text-2xl md:text-[26px] break-words">
             {product.name}
           </h1>
           <p className="mt-2 text-sm text-[#c8a832]">{product.tagline}</p>
         </div>
       </div>
 
-      <div className="overflow-x-auto border-b border-[#e0e8f0] bg-[#f0f5fa] px-4 [-webkit-overflow-scrolling:touch]">
-        <div className="mx-auto flex max-w-[1200px] gap-0">
+      {/* Mobile-friendly tabs - horizontal scroll */}
+      <div className="overflow-x-auto border-b border-[#e0e8f0] bg-[#f0f5fa] [-webkit-overflow-scrolling:touch]">
+        <div className="mx-auto flex max-w-[1200px] gap-0 min-w-max">
           {allProducts.map((s, i) => {
             const names = [
               "KREI DISSOLVER",
@@ -135,16 +136,10 @@ export default function ProductDetail() {
               <Link
                 key={s}
                 href={`/products/${s}`}
+                className="whitespace-nowrap px-3 py-3 text-xs font-bold no-underline transition-all duration-200 sm:px-4 md:px-[18px]"
                 style={{
-                  padding: "12px 18px",
-                  fontSize: "12px",
-                  fontWeight: "bold",
-                  textDecoration: "none",
                   color: i === currentIndex ? "#003f78" : "#666",
                   borderBottom: i === currentIndex ? "3px solid #003f78" : "3px solid transparent",
-                  whiteSpace: "nowrap",
-                  transition: "all 0.2s",
-                  display: "block",
                 }}
               >
                 {names[i]}
@@ -155,10 +150,14 @@ export default function ProductDetail() {
       </div>
 
       <div className="mx-auto max-w-[1200px] px-4 py-8 sm:py-10 md:py-10">
+        {/* Main content - responsive grid */}
         <div className="mb-10 grid grid-cols-1 gap-8 lg:mb-12 lg:grid-cols-[minmax(0,320px)_1fr] lg:gap-12 xl:gap-[50px]">
-          <div>
-            <div className="relative flex h-auto min-h-[220px] items-center justify-center border border-[#d0d8e8] bg-[#e8eef8] p-6 sm:h-[280px] sm:min-h-0 lg:p-[30px]">
-              <MachineryDetailSVG type={product.svgType} />
+          {/* Left column - Image and buttons */}
+          <div className="w-full">
+            <div className="relative flex h-auto min-h-[220px] w-full items-center justify-center border border-[#d0d8e8] bg-[#e8eef8] p-6 sm:h-[280px] lg:p-[30px]">
+              <div className="flex w-full max-w-[280px] items-center justify-center">
+                <MachineryDetailSVG type={product.svgType} />
+              </div>
               {/* KREI badge */}
               <div style={{
                 position: "absolute",
@@ -176,126 +175,83 @@ export default function ProductDetail() {
                 <span style={{ color: "#c8a832", fontSize: "8px", fontWeight: "bold", letterSpacing: "0.5px" }}>KREI</span>
               </div>
             </div>
-            {/* Action buttons */}
-            <div style={{ display: "flex", flexDirection: "column", gap: "10px", marginTop: "16px" }}>
+            {/* Action buttons - stack on mobile */}
+            <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:gap-4">
               <Link
                 href="/contact"
-                style={{
-                  backgroundColor: "#003f78",
-                  color: "#fff",
-                  border: "none",
-                  padding: "12px 20px",
-                  fontSize: "13px",
-                  fontWeight: "bold",
-                  cursor: "pointer",
-                  textAlign: "center",
-                  textDecoration: "none",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  gap: "8px",
-                  transition: "background 0.2s",
-                }}
+                className="flex flex-1 items-center justify-center gap-2 bg-[#003f78] px-5 py-3 text-center text-sm font-bold text-white no-underline transition-colors hover:bg-[#1a6fb5]"
               >
                 <Mail size={16} /> {t("product.request")}
               </Link>
               <button
-                style={{
-                  backgroundColor: "#fff",
-                  color: "#003f78",
-                  border: "2px solid #003f78",
-                  padding: "10px 20px",
-                  fontSize: "13px",
-                  fontWeight: "bold",
-                  cursor: "pointer",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  gap: "8px",
-                  transition: "all 0.2s",
-                }}
-                onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#003f78"; e.currentTarget.style.color = "#fff"; }}
-                onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "#fff"; e.currentTarget.style.color = "#003f78"; }}
+                className="flex flex-1 cursor-pointer items-center justify-center gap-2 border-2 border-[#003f78] bg-white px-5 py-3 text-center text-sm font-bold text-[#003f78] transition-all duration-200 hover:bg-[#003f78] hover:text-white"
               >
                 <Download size={16} /> {t("product.download")}
               </button>
             </div>
           </div>
 
-          {/* Description */}
-          <div>
-            <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "20px" }}>
-              <div style={{
-                width: "48px", height: "48px",
-                borderRadius: "50%",
-                border: "2px solid #c8a832",
-                backgroundColor: "#003f78",
-                display: "flex", alignItems: "center", justifyContent: "center",
-                flexShrink: 0,
-              }}>
-                <span style={{ color: "#c8a832", fontSize: "9px", fontWeight: "bold" }}>KREI</span>
+          {/* Right column - Description */}
+          <div className="w-full">
+            <div className="mb-5 flex flex-wrap items-center gap-3 sm:flex-nowrap sm:gap-4">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2 border-[#c8a832] bg-[#003f78]">
+                <span className="text-[9px] font-bold text-[#c8a832]">KREI</span>
               </div>
-              <div>
-                <div style={{ color: "#c8a832", fontSize: "12px", fontWeight: "bold", letterSpacing: "3px" }}>KREI</div>
-                <h2 style={{ color: "#003f78", fontSize: "22px", fontWeight: "bold", margin: 0 }}>
+              <div className="min-w-0 flex-1">
+                <div className="text-xs font-bold tracking-[3px] text-[#c8a832]">KREI</div>
+                <h2 className="m-0 break-words text-xl font-bold text-[#003f78] sm:text-[22px]">
                   {product.name.replace("KREI ", "")}
                 </h2>
               </div>
             </div>
 
-            <p style={{ color: "#555", fontSize: "15px", lineHeight: "1.8", marginBottom: "24px" }}>
+            <p className="mb-6 text-sm leading-relaxed text-[#555] sm:text-[15px] sm:leading-[1.8]">
               {product.fullDescription}
             </p>
 
-            {/* Features grid */}
-            <h3 style={{ color: "#003f78", fontSize: "16px", fontWeight: "bold", marginBottom: "14px", borderBottom: "2px solid #e0e8f0", paddingBottom: "8px" }}>
+            {/* Features grid - responsive columns */}
+            <h3 className="mb-4 border-b-2 border-[#e0e8f0] pb-2 text-base font-bold text-[#003f78]">
               {t("product.features")}
             </h3>
-            <div className="mb-6 grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-2">
+            <div className="mb-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
               {product.features.map((feature) => (
-                <div key={feature} style={{ display: "flex", alignItems: "flex-start", gap: "8px", fontSize: "13px", color: "#444" }}>
-                  <div style={{ width: "6px", height: "6px", borderRadius: "50%", backgroundColor: "#003f78", flexShrink: 0, marginTop: "5px" }} />
-                  {feature}
+                <div key={feature} className="flex items-start gap-2 text-sm text-[#444]">
+                  <div className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#003f78]" />
+                  <span className="break-words">{feature}</span>
                 </div>
               ))}
             </div>
           </div>
         </div>
 
+        {/* Applications and Technical Specs - responsive side-by-side */}
         <div className="mb-10 grid grid-cols-1 gap-6 lg:mb-12 lg:grid-cols-2 lg:gap-8 xl:gap-[30px]">
           {/* Applications */}
-          <div style={{ backgroundColor: "#f5f8fc", border: "1px solid #e0e8f0", padding: "24px", borderTop: "3px solid #c8a832" }}>
-            <h3 style={{ color: "#003f78", fontSize: "16px", fontWeight: "bold", marginBottom: "16px" }}>
+          <div className="border border-[#e0e8f0] border-t-[3px] border-t-[#c8a832] bg-[#f5f8fc] p-5 sm:p-6">
+            <h3 className="mb-4 text-base font-bold text-[#003f78]">
               {t("product.applications")}
             </h3>
-            <ul style={{ padding: 0, margin: 0, listStyle: "none" }}>
+            <ul className="m-0 list-none p-0">
               {product.applications.map((app) => (
-                <li key={app} style={{
-                  padding: "8px 0",
-                  borderBottom: "1px solid #e0e8f0",
-                  fontSize: "14px",
-                  color: "#555",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "10px",
-                }}>
-                  <ChevronRight size={14} style={{ color: "#c8a832", flexShrink: 0 }} />
-                  {app}
+                <li key={app} className="flex items-center gap-2 border-b border-[#e0e8f0] py-2 text-sm text-[#555]">
+                  <ChevronRight size={14} className="shrink-0 text-[#c8a832]" />
+                  <span className="break-words">{app}</span>
                 </li>
               ))}
             </ul>
           </div>
 
+          {/* Technical Specs */}
           <div className="overflow-x-auto bg-[#003f78] p-5 sm:p-6">
             <h3 className="mb-4 text-base font-bold text-white">{t("product.technical")}</h3>
-            <table className="w-full min-w-[260px] border-collapse">
+            <table className="w-full min-w-[240px] border-collapse">
               <tbody>
-                {product.technicalSpecs.map((spec, i) => (
-                  <tr key={spec.label} style={{ borderBottom: "1px solid rgba(255,255,255,0.15)" }}>
-                    <td style={{ padding: "8px 0", fontSize: "13px", color: "rgba(255,255,255,0.8)", paddingRight: "12px" }}>
+                {product.technicalSpecs.map((spec) => (
+                  <tr key={spec.label} className="border-b border-white/15">
+                    <td className="py-2 pr-3 text-xs text-white/80 sm:py-2 sm:pr-4 sm:text-[13px]">
                       {spec.label}
                     </td>
-                    <td style={{ padding: "8px 0", fontSize: "13px", color: "#fff", fontWeight: "bold", textAlign: "right" }}>
+                    <td className="py-2 text-right text-xs font-bold text-white sm:py-2 sm:text-[13px]">
                       {spec.value}
                     </td>
                   </tr>
@@ -305,63 +261,60 @@ export default function ProductDetail() {
           </div>
         </div>
 
+        {/* Models Table - responsive with horizontal scroll on mobile */}
         <div className="mb-10 lg:mb-12">
           <h3 className="mb-4 border-b-2 border-[#003f78] pb-2 text-lg font-bold text-[#003f78]">
             {t("product.models")}
           </h3>
-          <div className="-mx-4 overflow-x-auto px-4 sm:mx-0 sm:px-0">
-          <table className="w-full min-w-[520px] border-collapse text-sm sm:min-w-0">
-            <thead>
-              <tr style={{ backgroundColor: "#003f78", color: "#fff" }}>
-                <th style={{ padding: "12px 16px", textAlign: "left" }}>{t("products.models")}</th>
-                <th style={{ padding: "12px 16px", textAlign: "left" }}>Motor</th>
-                <th style={{ padding: "12px 16px", textAlign: "left" }}>Volume</th>
-                <th style={{ padding: "12px 16px", textAlign: "center" }}></th>
-              </tr>
-            </thead>
-            <tbody>
-              {product.models.map((model, i) => (
-                <tr key={model.name} style={{ backgroundColor: i % 2 === 0 ? "#fff" : "#f5f8fc", borderBottom: "1px solid #e0e8f0" }}>
-                  <td style={{ padding: "12px 16px", fontWeight: "bold", color: "#003f78" }}>{model.name}</td>
-                  <td style={{ padding: "12px 16px", color: "#555" }}>{model.power}</td>
-                  <td style={{ padding: "12px 16px", color: "#555" }}>{model.volume}</td>
-                  <td style={{ padding: "12px 16px", textAlign: "center" }}>
-                    <Link
-                      href="/contact"
-                      style={{
-                        backgroundColor: "#003f78",
-                        color: "#fff",
-                        padding: "6px 14px",
-                        fontSize: "12px",
-                        fontWeight: "bold",
-                        textDecoration: "none",
-                        display: "inline-block",
-                        transition: "background 0.2s",
-                      }}
-                    >
-                      {t("product.request")}
-                    </Link>
-                  </td>
+          <div className="w-full overflow-x-auto">
+            <table className="w-full min-w-[500px] border-collapse text-sm sm:min-w-0">
+              <thead>
+                <tr className="bg-[#003f78] text-white">
+                  <th className="px-4 py-3 text-left text-sm font-bold sm:px-6">{t("products.models")}</th>
+                  <th className="px-4 py-3 text-left text-sm font-bold sm:px-6">Motor</th>
+                  <th className="px-4 py-3 text-left text-sm font-bold sm:px-6">Volume</th>
+                  <th className="px-4 py-3 text-center text-sm font-bold sm:px-6"></th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {product.models.map((model, i) => (
+                  <tr 
+                    key={model.name} 
+                    className={i % 2 === 0 ? "bg-white" : "bg-[#f5f8fc]"}
+                    style={{ borderBottom: "1px solid #e0e8f0" }}
+                  >
+                    <td className="px-4 py-3 font-bold text-[#003f78] sm:px-6">{model.name}</td>
+                    <td className="px-4 py-3 text-[#555] sm:px-6">{model.power}</td>
+                    <td className="px-4 py-3 text-[#555] sm:px-6">{model.volume}</td>
+                    <td className="px-4 py-3 text-center sm:px-6">
+                      <Link
+                        href="/contact"
+                        className="inline-block bg-[#003f78] px-4 py-1.5 text-xs font-bold text-white no-underline transition-colors hover:bg-[#1a6fb5] sm:px-5 sm:py-2"
+                      >
+                        {t("product.request")}
+                      </Link>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
 
+        {/* Contact Expert Section - responsive */}
         <div className="mb-8 flex flex-col gap-4 border border-[#e0e8f0] border-l-[5px] border-l-[#c8a832] bg-[#f5f8fc] p-5 sm:flex-row sm:items-center sm:justify-between sm:gap-4 sm:p-6 md:mb-10 md:px-[30px] md:py-6">
-          <div className="min-w-0">
-            <h3 className="m-0 mb-1.5 text-base font-bold text-[#003f78] md:text-[17px]">
+          <div className="min-w-0 flex-1">
+            <h3 className="mb-2 text-base font-bold text-[#003f78] md:text-[17px]">
               {t("product.contact_expert")}
             </h3>
-            <div className="flex flex-col gap-2 text-sm text-[#555] sm:flex-row sm:flex-wrap sm:gap-x-5 sm:gap-y-2 md:text-[14px]">
+            <div className="flex flex-col gap-2 text-sm text-[#555] sm:flex-row sm:flex-wrap sm:gap-x-5 sm:gap-y-2">
               <span className="flex items-center gap-1.5">
                 <Phone size={14} className="shrink-0 text-[#003f78]" />
-                +49 (0) 5744 / 508-0
+                <span className="break-words">+49 (0) 5744 / 508-0</span>
               </span>
               <span className="flex items-center gap-1.5 break-all">
                 <Mail size={14} className="shrink-0 text-[#003f78]" />
-                info@niemann.de
+                <span className="break-all">info@niemann.de</span>
               </span>
             </div>
           </div>
@@ -375,8 +328,8 @@ export default function ProductDetail() {
 
         {/* Back link */}
         <div>
-          <Link href="/products" style={{ color: "#1a6fb5", textDecoration: "none", fontSize: "14px", fontWeight: "bold", display: "inline-flex", alignItems: "center", gap: "4px" }}>
-            {t("product.back")}
+          <Link href="/products" className="inline-flex items-center gap-1 text-sm font-bold text-[#1a6fb5] no-underline hover:underline">
+            ← {t("product.back")}
           </Link>
         </div>
       </div>

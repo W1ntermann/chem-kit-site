@@ -209,30 +209,72 @@ export default function Home() {
           ))}
         </div>
 
-        <div className="absolute bottom-0 left-0 right-0 z-10 grid grid-cols-2 md:grid-cols-4">
-          {products.map((product, idx) => (
-            <Link
-              key={product.id}
-              href={`/products/${product.slug}`}
-              className={cn(
-                "flex min-h-[60px] cursor-pointer items-center justify-center gap-2 bg-[rgba(0,30,70,0.82)] px-2 py-3 no-underline transition-colors hover:bg-[rgba(0,50,110,0.92)] sm:px-3 sm:py-3.5 md:min-h-0 md:py-3.5",
-                idx % 2 === 0 && "border-r border-white/12",
-                idx < 2 && "border-b border-white/12 md:border-b-0",
-                idx < 3 && "md:border-r md:border-white/12"
-              )}
-            >
-              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 border-[#c8a832] bg-[#003f78] sm:h-9 sm:w-9">
-                <span className="text-[6px] font-bold text-[#c8a832] sm:text-[7px]">KREI</span>
-              </div>
-              <div className="min-w-0 text-left">
-                <div className="text-[6px] font-bold tracking-widest text-[#c8a832] sm:text-[7px]">KREI</div>
-                <div className="line-clamp-2 text-[9px] font-bold leading-tight text-white sm:text-[10px]">
-                  {product.name.replace("KREI ", "")}
-                </div>
-              </div>
-            </Link>
-          ))}
+        <div className="absolute bottom-0 left-0 right-0 z-10">
+  <div className="grid grid-cols-2 md:grid-cols-4 auto-rows-fr">
+    {products.map((product, idx) => (
+      <Link
+        key={product.id}
+        href={`/products/${product.slug}`}
+        className={cn(
+          // Flexbox для рівномірного розподілу контенту
+          "group flex items-center justify-center gap-2.5",
+          "bg-[rgba(0,30,70,0.82)] px-3 py-3.5 no-underline",
+          "hover:bg-[rgba(0,50,110,0.92)] transition-all duration-200",
+          
+          // Забезпечуємо однакову висоту
+          "h-full w-full",
+          
+          // Адаптивні відступи
+          "sm:gap-3 sm:px-4 sm:py-4",
+          "md:gap-3.5 md:px-5 md:py-4",
+          
+          // Межі
+          idx % 2 === 0 && "border-r border-white/10",
+          idx < 2 && "border-b border-white/10 md:border-b-0",
+          idx < 3 && "md:border-r md:border-white/10",
+          
+          // Коригування для останніх елементів
+          idx === products.length - 1 && idx % 2 === 1 && "md:border-r-0"
+        )}
+      >
+        {/* Іконка з фіксованим розміром */}
+        <div className="flex shrink-0 items-center justify-center">
+          <div className={cn(
+            "flex items-center justify-center rounded-full",
+            "border-2 border-[#c8a832] bg-[#003f78]",
+            "h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10",
+            "transition-transform group-hover:scale-105"
+          )}>
+            <span className={cn(
+              "font-bold text-[#c8a832]",
+              "text-[6px] sm:text-[7px] md:text-[8px]"
+            )}>
+              KREI
+            </span>
+          </div>
         </div>
+
+        {/* Текст з рівномірним відступом */}
+        <div className="flex-1 min-w-0">
+          <div className={cn(
+            "font-bold tracking-widest text-[#c8a832]",
+            "text-[6px] sm:text-[7px] md:text-[8px]",
+            "uppercase"
+          )}>
+            KREI
+          </div>
+          <div className={cn(
+            "font-bold leading-tight text-white",
+            "text-[9px] sm:text-[10px] md:text-[11px]",
+            "line-clamp-2"
+          )}>
+            {product.name.replace("KREI ", "")}
+          </div>
+        </div>
+      </Link>
+    ))}
+  </div>
+</div>
       </div>
 
       <div className="bg-[#f0f5fa] px-4 py-7 text-center">
